@@ -2,8 +2,11 @@ version: '3'
 services:
   recorder:
     image: owntracks/recorder:latest
-    env_file:
-      - stack.env
+    environment:
+      - OTR_HOST=${OTR_HOST}
+      - OTR_PORT=${OTR_PORT}
+      - OTR_USER=${OTR_USER}
+      - OTR_PASS=${OTR_PASS}
     volumes:
       - ${DOCKER_VOL_ROOT_DIR}/owntracks_data/config:/config
       - ${DOCKER_VOL_ROOT_DIR}/owntracks_data/store:/store
