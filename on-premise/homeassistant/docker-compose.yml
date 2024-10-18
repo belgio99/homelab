@@ -1,0 +1,53 @@
+version: '3'
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: ghcr.io/home-assistant/home-assistant:stable
+    privileged: true
+    volumes:
+      - ${DOCKER_VOL_ROOT_DIR}/homeassistant_data:/config
+      - /etc/localtime:/etc/localtime:ro
+    network_mode: host
+    restart: unless-stopped
+
+  esphome:
+    container_name: esphome
+    image: ghcr.io/esphome/esphome
+    privileged: true
+    environment:
+      - USERNAME=${ESPHOME_USER}
+      - PASSWORD=${ESPHOME_PASSWORD}
+    volumes:
+      - ${DOCKER_VOL_ROOT_DIR}/esphome_data:/config
+      - /etc/localtime:/etc/localtime:ro
+    restart: always
+
+  whisper:
+    container_name: whisper
+    image: homeassistant/amd64-addon-whisper:latest
+    ports:
+      - ${WHISPER_HOST_PORT}:${WHISPER_CONT_PORT}
+    volumes:
+      - ${DOCKER_VOL_ROOT_DIR}/homeassistant_whisper_data:/data
+      - ${DOCKER_VOL_TEMP_DIR}/whisper:/tmp/download
+    restart: unless-stopped
+    entrypoint: python3
+    command: -m wyoming_faster_whisper --uri tcp://0.0.0.0:${WHISPER_CONT_PORT} --model tiny-int8 --beam-size 15 --language it --data-dir /data --download-dir /tmp/download
+
+  wyoming-piper:
+    container_name: piper
+    image: linuxserver/piper
+    stdin_open: true
+    tty: true
+    environment:
+      - PIPER_VOICE=it_IT-paola-medium
+      - TZ=Europe/Rome
+      - PUID=1026
+      - PGID=100
+      - PIPER_NOISE=0.8
+      - PIPER_NOISEW=0.5
+      - PIPER_LENGTH=1.25
+    ports:
+      - ${PIPER_HOST_PORT}:${PIPER_CONT_PORT}
+    volumes:
+      - ${DOCKER_VOL_ROOT_DIR}/homeassistant_piper_data:/data

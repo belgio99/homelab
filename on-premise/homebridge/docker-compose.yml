@@ -1,0 +1,15 @@
+version: '3'
+services:
+  homebridge:
+    container_name: homebridge
+    image: homebridge/homebridge:latest
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - HOMEBRIDGE_CONFIG_UI=1
+      - HOMEBRIDGE_CONFIG_UI_PORT=${HOMEBRIDGE_UI_PORT}
+      - TZ=Europe/Rome
+    network_mode: host
+    volumes:
+      - ${DOCKER_VOL_ROOT_DIR}/homebridge_data:/homebridge
+    restart: always

@@ -1,0 +1,21 @@
+version: '3'
+services:
+  recorder:
+    image: owntracks/recorder:latest
+    env_file:
+      - stack.env
+    volumes:
+      - ${DOCKER_VOL_ROOT_DIR}/owntracks_data/config:/config
+      - ${DOCKER_VOL_ROOT_DIR}/owntracks_data/store:/store
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - ${OWNTRACKS_NGINX_HOST_PORT}:${OWNTRACKS_NGINX_CONT_PORT}
+    volumes:
+      - ${DOCKER_VOL_ROOT_DIR}/owntracks_data/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ${DOCKER_VOL_ROOT_DIR}/owntracks_data/nginx/htpasswd:/etc/nginx/htpasswd
+    depends_on:
+      - recorder
+    restart: on-failure

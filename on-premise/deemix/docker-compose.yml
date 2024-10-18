@@ -1,0 +1,29 @@
+version: "3"
+services:
+  deemix:
+    image: registry.gitlab.com/bockiii/deemix-docker:latest
+    restart: unless-stopped
+    container_name: deemix
+    ports:
+      - ${DEEMIX_HOST_PORT}:${DEEMIX_CONT_PORT} # Deemix web UI
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - DEEMIX_SINGLE_USER=true
+    volumes:
+      - ${DOCKER_VOL_ROOT_DIR}/deemix_data:/config
+      - ${DEEMIX_DOWNLOAD_DIR}:/downloads
+
+  deemix_rb: #Separate instance for Rekordbox library
+    image: registry.gitlab.com/bockiii/deemix-docker:latest
+    restart: unless-stopped
+    container_name: deemix_rb
+    ports:
+      - ${DEEMIX_RB_HOST_PORT}:${DEEMIX_RB_CONT_PORT} # Deemix web UI
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - DEEMIX_SINGLE_USER=true
+    volumes:
+      - ${DOCKER_VOL_ROOT_DIR}/deemix_rb_data:/config
+      - ${DEEMIX_RB_DOWNLOAD_DIR}:/downloads
