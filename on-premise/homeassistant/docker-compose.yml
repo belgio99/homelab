@@ -51,3 +51,4 @@ services:
       - ${PIPER_HOST_PORT}:${PIPER_CONT_PORT}
     volumes:
       - ${DOCKER_VOL_ROOT_DIR}/homeassistant_piper_data:/data
+    restart: unless-stopped

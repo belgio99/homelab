@@ -21,4 +21,4 @@ services:
       - ${DOCKER_VOL_ROOT_DIR}/owntracks_data/nginx/htpasswd:/etc/nginx/htpasswd
     depends_on:
       - recorder
-    restart: on-failure
+    restart: unless-stopped
