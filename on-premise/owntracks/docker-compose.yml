@@ -31,5 +31,5 @@ services:
       - ${DOCKER_VOL_ROOT_DIR}/owntracks_data/frontend/config.js:/usr/share/nginx/html/config/config.js
     environment:
       - SERVER_HOST=recorder
-      - SERVER_PORT=${OTR_PORT}
+      - SERVER_PORT=8083
     restart: unless-stopped
