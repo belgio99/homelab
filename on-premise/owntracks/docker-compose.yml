@@ -26,7 +26,7 @@ services:
   owntracks-frontend:
     image: owntracks/frontend
     ports:
-      - 80:80
+      - 18000:80
     volumes:
       - ${DOCKER_VOL_ROOT_DIR}/owntracks_data/frontend/config.js:/usr/share/nginx/html/config/config.js
     environment:
