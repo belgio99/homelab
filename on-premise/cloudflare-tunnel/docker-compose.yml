@@ -7,5 +7,4 @@ services:
       restart: always
       environment:
         NO_AUTOUPDATE: true
-      env_file:
-        - /volume2/docker/compose/cloudflare-tunnel/.env
+        TUNNEL_TOKEN: ${TUNNEL_TOKEN}
