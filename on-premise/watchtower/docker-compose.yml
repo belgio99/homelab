@@ -1,0 +1,15 @@
+version: "2"
+services:
+  watchtower:
+    container_name: watchtower
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      WATCHTOWER_CLEANUP: True
+      WATCHTOWER_POLL_INTERVAL: 86400 #check for updates once per day
+      WATCHTOWER_INCLUDE_STOPPED: True
+      WATCHTOWER_SCHEDULE: "0 30 5 * * *"
+      TZ: "Europe/Rome"
+
+    restart: unless-stopped

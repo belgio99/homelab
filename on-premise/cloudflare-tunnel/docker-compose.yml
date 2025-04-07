@@ -1,0 +1,11 @@
+version: "3"
+services:
+    cloudflared:
+      image: cloudflare/cloudflared:latest
+      container_name: cloudflare-tunnel
+      command: tunnel run
+      restart: always
+      environment:
+        NO_AUTOUPDATE: true
+      env_file:
+        - /volume2/docker/compose/cloudflare-tunnel/.env

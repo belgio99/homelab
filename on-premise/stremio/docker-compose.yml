@@ -1,0 +1,17 @@
+version: "3"
+services:
+    server:
+        container_name: stremio
+        ports:
+            - 11470:11470
+            - 12470:12470
+        image: stremio/server:latest
+        restart: unless-stopped
+        devices:
+          - /dev/dri:/dev/dri
+        environment:
+          - "APP_PATH=/app/config"
+          - "NO_CORS=1"
+        volumes:
+          - /volume2/docker/volumes/stremio_data:/app/config
+          - /volume1/tmp/.docker/stremio/stremio-cache:/app/config/stremio-cache
