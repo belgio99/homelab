@@ -7,5 +7,8 @@ services:
         ports:
             - ${UPTIME_KUMA_HOST_PORT}:${UPTIME_KUMA_CONT_PORT}
         volumes:
-            - ${DOCKER_VOL_ROOT_DIR}/uptime-kuma_data:/app/data
+            - uptime-kuma:/app/data
             - /var/run/docker.sock:/var/run/docker.sock
+
+volumes:
+    uptime-kuma:
