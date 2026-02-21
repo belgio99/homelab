@@ -1,0 +1,20 @@
+# Cloudflare Tunnel Ingress for WordPress
+# TLS is handled by Cloudflare edge, DNS is auto-provisioned by the controller
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wordpress
+  namespace: wordpress-sologemma
+spec:
+  ingressClassName: cloudflare-tunnel
+  rules:
+    - host: sologemma.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: wordpress
+                port:
+                  number: 80

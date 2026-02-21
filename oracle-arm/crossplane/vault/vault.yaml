@@ -1,0 +1,14 @@
+apiVersion: kms.oci.upbound.io/v1alpha1
+kind: Vault
+metadata:
+  name: gio-vault
+  annotations:
+    crossplane.io/external-name: "ocid1.vault.oc1.eu-milan-1.hjuzrsdpaae3g.abwgsljr4femfu6eqjtogsw3hr7lkjve27ymrtlhsfzv3ms5rkm3u3yyaj5a"
+spec:
+  managementPolicies: ["Observe"]
+  forProvider:
+    compartmentId: "ocid1.tenancy.oc1..aaaaaaaaic5nx2ifziikvx56su334ruzxqlmujowvwpfy7jodzvomlskbf2q"
+    displayName: gio-vault
+    vaultType: DEFAULT
+  providerConfigRef:
+    name: default

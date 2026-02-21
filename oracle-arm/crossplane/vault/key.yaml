@@ -1,0 +1,18 @@
+apiVersion: kms.oci.upbound.io/v1alpha1
+kind: Key
+metadata:
+  name: gio-mek
+  annotations:
+    crossplane.io/external-name: "ocid1.key.oc1.eu-milan-1.hjuzrsdpaae3g.abwgsljrocgwohzkinylkgbbxgyiuzgugkxlsu566xdrv56zsq64ldtjxl7a"
+spec:
+  managementPolicies: ["Observe"]
+  forProvider:
+    compartmentId: "ocid1.tenancy.oc1..aaaaaaaaic5nx2ifziikvx56su334ruzxqlmujowvwpfy7jodzvomlskbf2q"
+    displayName: gio-mek
+    keyShape:
+      - algorithm: AES
+        length: 32
+    managementEndpoint: "https://hjuzrsdpaae3g-management.kms.eu-milan-1.oci.oraclecloud.com"
+    protectionMode: SOFTWARE
+  providerConfigRef:
+    name: default
