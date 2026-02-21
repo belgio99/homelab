@@ -44,6 +44,14 @@ data:
       </parse>
     </source>
 
+    # Enrich logs with Kubernetes metadata (namespace, pod name, container name, labels)
+    <filter kubernetes.**>
+      @type kubernetes_metadata
+      # The tag is kubernetes.var.log.containers.POD_NAME_NAMESPACE_CONTAINER_NAME-CONTAINER_ID.log
+      # We need to extract the pod name, namespace, and container name from the tag
+      # The default regex in the plugin handles this standard format.
+    </filter>
+
     # Filter out noisy system logs if needed
     <filter kubernetes.var.log.containers.kube-system_**>
       @type grep
