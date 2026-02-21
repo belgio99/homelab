@@ -40,11 +40,29 @@ resource "oci_identity_dynamic_group" "oracle_arm_instances" {
 
 resource "oci_identity_policy" "oracle_arm_metrics_policy" {
   compartment_id = var.compartment_id
-  description    = "Allow oracle-arm instances to push metrics to OCI Monitoring"
+  description    = "Allow oracle-arm instances to push metrics and logs to OCI"
   name           = "oracle-arm-metrics-policy"
   statements     = [
-    "Allow dynamic-group oracle-arm-instances to use metrics in tenancy"
+    "Allow dynamic-group oracle-arm-instances to use metrics in tenancy",
+    "Allow dynamic-group oracle-arm-instances to use log-content in compartment id ${var.compartment_id}"
   ]
+}
+
+resource "oci_logging_log_group" "k8s_log_group" {
+  compartment_id = var.compartment_id
+  display_name   = "kubernetes-logs"
+  description    = "Log group for Kubernetes cluster logs"
+}
+
+resource "oci_logging_log" "k8s_fluentd_log" {
+  display_name = "fluentd-logs"
+  log_group_id = oci_logging_log_group.k8s_log_group.id
+  log_type     = "CUSTOM"
+  is_enabled   = true
+}
+
+output "fluentd_log_ocid" {
+  value = oci_logging_log.k8s_fluentd_log.id
 }
 
 resource "oci_logging_unified_agent_configuration" "kube_state_metrics_agent_config" {
