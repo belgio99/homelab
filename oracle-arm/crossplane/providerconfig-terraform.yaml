@@ -11,6 +11,14 @@ spec:
         name: oci-terraform-credentials
         key: private_key
   configuration: |
+    terraform {
+      backend "kubernetes" {
+        secret_suffix     = "providerconfig-default"
+        namespace         = "crossplane-system"
+        in_cluster_config = true
+      }
+    }
+
     provider "oci" {
       tenancy_ocid     = var.tenancy_ocid
       user_ocid        = var.user_ocid
