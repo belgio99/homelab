@@ -11,3 +11,17 @@ metadata:
   name: upbound-provider-oci-kms
 spec:
   package: xpkg.upbound.io/upbound/provider-oci-kms:v0.1.3
+---
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: upbound-provider-oci-identity
+spec:
+  package: xpkg.upbound.io/upbound/provider-oci-identity:v0.1.3
+---
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-terraform
+spec:
+  package: xpkg.upbound.io/upbound/provider-terraform:v0.18.0
