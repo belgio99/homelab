@@ -4,6 +4,7 @@ metadata:
   name: gio-mek
   annotations:
     crossplane.io/external-name: "ocid1.key.oc1.eu-milan-1.hjuzrsdpaae3g.abwgsljrocgwohzkinylkgbbxgyiuzgugkxlsu566xdrv56zsq64ldtjxl7a"
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   managementPolicies: ["Observe"]
   forProvider:

@@ -1,16 +1,16 @@
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
-  name: cloudflare-tunnel-credentials
-  namespace: cloudflare-tunnel-ingress-controller
+  name: operator-oauth
+  namespace: tailscale
 spec:
   refreshInterval: 1h
   secretStoreRef:
     name: oci-vault
     kind: ClusterSecretStore
   target:
-    name: cloudflare-tunnel-credentials
+    name: operator-oauth
     creationPolicy: Owner
   dataFrom:
     - extract:
-        key: "cloudflare-tunnel-k3s-oracle-arm-credentials"
+        key: "tailscale-k3s-oracle-arm-oauth-credentials"

@@ -4,18 +4,14 @@ metadata:
   name: argocd-server
   namespace: argo-cd
   annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    traefik.ingress.kubernetes.io/router.tls: "true"
+    argocd.argoproj.io/sync-wave: "3"
 spec:
-  ingressClassName: traefik
-  rules:
-    - host: oracle-arm.burro-drum.ts.net
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: argo-cd-argocd-server
-                port:
-                  number: 443
+  ingressClassName: tailscale
+  defaultBackend:
+    service:
+      name: argo-cd-argocd-server
+      port:
+        number: 443
+  tls:
+    - hosts:
+        - argocd
