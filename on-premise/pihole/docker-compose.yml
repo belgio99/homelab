@@ -28,21 +28,6 @@ services:
       pihole:
         ipv4_address: "${PIHOLE_IP}"
 
-  cloudflared:
-    container_name: cloudflared-doh
-    image: cloudflare/cloudflared:latest
-    restart: unless-stopped
-    command: proxy-dns
-    ports:
-      - "${CLOUDFLARED_PORT}:${CLOUDFLARED_PORT}"
-    environment:
-      TUNNEL_DNS_UPSTREAM: "https://1.0.0.1/dns-query,https://1.1.1.1/dns-query"
-      TUNNEL_DNS_PORT: ${CLOUDFLARED_PORT}
-      TUNNEL_DNS_ADDRESS: "0.0.0.0"
-    networks:
-      pihole:
-        ipv4_address: "${CLOUDFLARED_IP}"
-
 networks:
   pihole:
     driver: bridge
