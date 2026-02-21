@@ -56,7 +56,7 @@ data:
     <match kubernetes.**>
       @type oci_logging
       # Replace with your actual OCI Log OCID
-      log_object_id ocid1.log.oc1.eu-milan-1.amaaaaaabq3tbnaahymayeurdsuczlzvilergo5sfpiy6mj5te2kve7
+      log_object_id ocid1.log.oc1.eu-milan-1.amaaaaaabq3tbnaahymayeurdsuczlzvilergo5sfpiy6mj5te2kve7lkmrq
       principal_type instance
       
       # Hardened buffer settings to prevent memory leaks and handle network issues
@@ -92,6 +92,8 @@ spec:
         name: fluentd
     spec:
       serviceAccountName: fluentd
+      securityContext:
+        runAsUser: 0
       tolerations:
       - key: node-role.kubernetes.io/master
         effect: NoSchedule
