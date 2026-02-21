@@ -56,7 +56,7 @@ data:
     <match kubernetes.**>
       @type oci_logging
       # Replace with your actual OCI Log OCID
-      log_object_id ocid1.log.oc1.eu-frankfurt-1.amaaaaaa...
+      log_object_id ocid1.log.oc1.eu-milan-1.amaaaaaabq3tbnaahymayeurdsuczlzvilergo5sfpiy6mj5te2kve7
       principal_type instance
       
       # Hardened buffer settings to prevent memory leaks and handle network issues
@@ -99,13 +99,8 @@ spec:
         effect: NoSchedule
       containers:
       - name: fluentd
-        # You will need to build a custom image that includes the fluent-plugin-oci-logging plugin
-        # Example Dockerfile:
-        # FROM fluent/fluentd:v1.16-debian-1
-        # USER root
-        # RUN gem install fluent-plugin-oci-logging
-        # USER fluent
-        image: ghcr.io/belgio99/fluentd-oci:latest
+        # Using a community image that already has fluent-plugin-oci-logging and kubernetes_metadata_filter installed for arm64
+        image: zanderxue/fluentd-oci:1.0
         env:
         - name: FLUENTD_CONF
           value: "fluent.conf"
