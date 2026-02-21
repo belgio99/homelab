@@ -1,0 +1,28 @@
+apiVersion: tf.upbound.io/v1beta1
+kind: Workspace
+metadata:
+  name: oci-monitoring
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
+spec:
+  forProvider:
+    source: Remote
+    module: git::https://github.com/belgio99/homelab.git//terraform/monitoring?ref=main
+    vars:
+      - key: tenancy_ocid
+        value: "ocid1.tenancy.oc1..aaaaaaaaic5nx2ifziikvx56su334ruzxqlmujowvwpfy7jodzvomlskbf2q"
+      - key: user_ocid
+        value: "ocid1.user.oc1..aaaaaaaaeh6343wwomkxoak6stei57xzz32fihp45orf6bonqaew4wkmequa"
+      - key: fingerprint
+        value: "01:5b:f4:26:14:d2:e4:a7:47:3e:d6:2c:b8:76:8b:2a"
+      - key: region
+        value: "eu-milan-1"
+      - key: compartment_id
+        value: "ocid1.tenancy.oc1..aaaaaaaaic5nx2ifziikvx56su334ruzxqlmujowvwpfy7jodzvomlskbf2q"
+      - key: instance_id
+        value: "ocid1.instance.oc1.eu-milan-1.anwgsljrbq3tbnacdncwoa2jnjjfrrhgxnr3gndmewbqmyn7bfzsqqwatqsa"
+  providerConfigRef:
+    name: default
+  writeConnectionSecretToRef:
+    namespace: monitoring
+    name: oci-monitoring-workspace-secret
