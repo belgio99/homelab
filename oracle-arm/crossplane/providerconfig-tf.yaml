@@ -1,0 +1,24 @@
+apiVersion: tf.upbound.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: default
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  # This configuration is injected into all Workspaces using this ProviderConfig.
+  # We configure the OCI Terraform provider to use InstancePrincipal authentication,
+  # which works seamlessly since your K3s cluster is running on an OCI instance.
+  configuration: |
+    terraform {
+      required_providers {
+        oci = {
+          source  = "oracle/oci"
+          version = "~> 6.0"
+        }
+      }
+    }
+
+    provider "oci" {
+      auth   = "InstancePrincipal"
+      region = "eu-milan-1"
+    }
