@@ -93,6 +93,11 @@ spec:
                 className: tailscale
                 hosts:
                   - host: openclaw
+                    paths:
+                      - path: /
+                        service:
+                          identifier: main
+                          port: 18789
     - repoURL: https://github.com/belgio99/homelab.git
       targetRevision: main
       path: oracle-arm/openclaw
