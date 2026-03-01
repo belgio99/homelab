@@ -62,7 +62,7 @@ spec:
                             "identity": {
                               "name": "Pro",
                               "emoji": "🧠"
-                            },
+                            }
                           },
                           {
                             "id": "fast",
