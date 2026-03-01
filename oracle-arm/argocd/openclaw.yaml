@@ -17,11 +17,39 @@ spec:
             configMode: overwrite
             controllers:
               main:
+                initContainers:
+                  install-tools:
+                    image: alpine:3.21
+                    command:
+                      - sh
+                      - -c
+                      - |
+                        apk add --no-cache curl tar gzip &&
+                        # Install gh CLI
+                        GH_VERSION=2.67.0
+                        curl -sL "https://github.com/cli/cli/releases/download/v${GH_VERSION}/gh_${GH_VERSION}_linux_arm64.tar.gz" | tar xz -C /tmp &&
+                        cp /tmp/gh_${GH_VERSION}_linux_arm64/bin/gh /extra-tools/ &&
+                        # Install kubectl
+                        curl -sL "https://dl.k8s.io/release/$(curl -sL https://dl.k8s.io/release/stable.txt)/bin/linux/arm64/kubectl" -o /extra-tools/kubectl &&
+                        chmod +x /extra-tools/gh /extra-tools/kubectl &&
+                        echo "Tools installed:" && ls -la /extra-tools/
+                    volumeMounts:
+                      - name: extra-tools
+                        mountPath: /extra-tools
                 containers:
                   main:
+                    env:
+                      - name: PATH
+                        value: "/extra-tools:/root/.bun/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
                     envFrom:
                       - secretRef:
                           name: openclaw-secrets
+                    volumeMounts:
+                      - name: extra-tools
+                        mountPath: /extra-tools
+            persistence:
+              extra-tools:
+                type: emptyDir
             configMaps:
               config:
                 data:
