@@ -110,7 +110,7 @@ spec:
       containers:
       - name: fluentd
         # Using a community image that already has fluent-plugin-oci-logging and kubernetes_metadata_filter installed for arm64
-        image: zanderxue/fluentd-oci:1.0
+        image: zanderxue/fluentd-oci:1.1
         env:
         - name: FLUENTD_CONF
           value: "fluent.conf"
