@@ -21,19 +21,78 @@ spec:
                     envFrom:
                       - secretRef:
                           name: openclaw-secrets
-          openclawConfig:
-            gateway:
-              controlUi:
-                dangerouslyAllowHostHeaderOriginFallback: true
-            agents:
-              defaults:
-                model:
-                  primary: "google/gemini-3-pro-preview"
-          ingress:
-            enabled: true
-            className: tailscale
-            hosts:
-              - host: openclaw
+            configMaps:
+              config:
+                data:
+                  openclaw.json: |
+                    {
+                      "gateway": {
+                        "port": 18789,
+                        "mode": "local",
+                        "trustedProxies": ["10.0.0.0/8"],
+                        "controlUi": {
+                          "dangerouslyAllowHostHeaderOriginFallback": true
+                        }
+                      },
+                      "browser": {
+                        "enabled": true,
+                        "defaultProfile": "default",
+                        "profiles": {
+                          "default": {
+                            "cdpUrl": "http://localhost:9222",
+                            "color": "#4285F4"
+                          }
+                        }
+                      },
+                      "agents": {
+                        "defaults": {
+                          "workspace": "/home/node/.openclaw/workspace",
+                          "model": {
+                            "primary": "google/gemini-3-pro-preview"
+                          },
+                          "userTimezone": "UTC",
+                          "timeoutSeconds": 600,
+                          "maxConcurrent": 1
+                        },
+                        "list": [
+                          {
+                            "id": "main",
+                            "default": true,
+                            "identity": {
+                              "name": "OpenClaw",
+                              "emoji": "🦞"
+                            }
+                          }
+                        ]
+                      },
+                      "session": {
+                        "scope": "per-sender",
+                        "store": "/home/node/.openclaw/sessions",
+                        "reset": {
+                          "mode": "idle",
+                          "idleMinutes": 60
+                        }
+                      },
+                      "logging": {
+                        "level": "info",
+                        "consoleLevel": "info",
+                        "consoleStyle": "compact",
+                        "redactSensitive": "tools"
+                      },
+                      "tools": {
+                        "profile": "full",
+                        "web": {
+                          "search": { "enabled": false },
+                          "fetch": { "enabled": true }
+                        }
+                      }
+                    }
+            ingress:
+              main:
+                enabled: true
+                className: tailscale
+                hosts:
+                  - host: openclaw
     - repoURL: https://github.com/belgio99/homelab.git
       targetRevision: main
       path: oracle-arm/openclaw
