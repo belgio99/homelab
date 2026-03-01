@@ -48,7 +48,7 @@ spec:
                         "defaults": {
                           "workspace": "/home/node/.openclaw/workspace",
                           "model": {
-                            "primary": "google/gemini-3-pro-preview"
+                            "primary": "google/gemini-3.1-pro-preview"
                           },
                           "userTimezone": "UTC",
                           "timeoutSeconds": 600,
