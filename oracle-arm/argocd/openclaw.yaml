@@ -85,6 +85,13 @@ spec:
                           "search": { "enabled": false },
                           "fetch": { "enabled": true }
                         }
+                      },
+                      "channels": {
+                        "telegram": {
+                          "enabled": true,
+                          "botToken": "${TELEGRAM_BOT_TOKEN}",
+                          "dmPolicy": "pairing"
+                        }
                       }
                     }
             ingress:
