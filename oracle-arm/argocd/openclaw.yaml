@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://serhanekicii.github.io/openclaw-helm
     chart: openclaw
-    targetRevision: main
+    targetRevision: 1.4.0
     helm:
       valuesObject:
         app-template:
