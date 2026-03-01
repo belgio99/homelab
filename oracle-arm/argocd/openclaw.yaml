@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: openclaw
+  namespace: argo-cd
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  project: default
+  source:
+    repoURL: https://serhanekicii.github.io/openclaw-helm
+    chart: openclaw
+    targetRevision: main
+    helm:
+      valuesObject:
+        app-template:
+          controllers:
+            main:
+              containers:
+                main:
+                  envFrom:
+                    - secretRef:
+                        name: openclaw-secrets
+        openclawConfig:
+          agents:
+            defaults:
+              model:
+                primary: "google/gemini-3-pro-preview"
+        ingress:
+          enabled: true
+          className: tailscale
+          hosts:
+            - host: openclaw
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: openclaw
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
