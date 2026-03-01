@@ -22,6 +22,9 @@ spec:
                       - secretRef:
                           name: openclaw-secrets
           openclawConfig:
+            gateway:
+              controlUi:
+                dangerouslyAllowHostHeaderOriginFallback: true
             agents:
               defaults:
                 model:
