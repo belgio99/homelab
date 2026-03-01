@@ -47,21 +47,33 @@ spec:
                       "agents": {
                         "defaults": {
                           "workspace": "/home/node/.openclaw/workspace",
-                          "model": {
-                            "primary": "google/gemini-3.1-pro-preview"
-                          },
                           "userTimezone": "UTC",
                           "timeoutSeconds": 600,
-                          "maxConcurrent": 1
+                          "maxConcurrent": 2
                         },
                         "list": [
                           {
                             "id": "main",
                             "default": true,
+                            "model": {
+                              "primary": "google/gemini-3.1-pro-preview"
+                            },
                             "identity": {
-                              "name": "OpenClaw",
-                              "emoji": "🦞"
-                            }
+                              "name": "Pro",
+                              "emoji": "🧠"
+                            },
+                            "description": "Complex tasks: coding, analysis, reasoning"
+                          },
+                          {
+                            "id": "fast",
+                            "model": {
+                              "primary": "google/gemini-3-flash-preview"
+                            },
+                            "identity": {
+                              "name": "Flash",
+                              "emoji": "⚡"
+                            },
+                            "description": "Quick tasks: questions, summaries, translations"
                           }
                         ]
                       },
