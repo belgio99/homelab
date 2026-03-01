@@ -71,7 +71,7 @@ spec:
                       "tools": {
                         "profile": "full",
                         "web": {
-                          "search": { "enabled": false },
+                          "search": { "enabled": true },
                           "fetch": { "enabled": true }
                         }
                       },
