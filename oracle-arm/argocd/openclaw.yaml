@@ -19,7 +19,7 @@ spec:
               main:
                 initContainers:
                   install-tools:
-                    image: alpine:3.21
+                    image: alpine:3.23
                     command:
                       - sh
                       - -c
