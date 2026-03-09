@@ -1,0 +1,69 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "timezone": "UTC",
+  "schedule": [
+    "before 6am on monday"
+  ],
+  "prConcurrentLimit": 5,
+  "enabledManagers": [
+    "docker-compose",
+    "terraform",
+    "kubernetes",
+    "pre-commit",
+    "regex"
+  ],
+  "docker-compose": {
+    "fileMatch": [
+      "(^|/)docker-compose\\.ya?ml$"
+    ]
+  },
+  "terraform": {
+    "fileMatch": [
+      "(^|/)terraform/.+\\.tf$"
+    ]
+  },
+  "kubernetes": {
+    "fileMatch": [
+      "^oracle-arm/.+\\.ya?ml$"
+    ]
+  },
+  "regexManagers": [
+    {
+      "fileMatch": [
+        "^oracle-arm/argocd/.+\\.ya?ml$"
+      ],
+      "matchStrings": [
+        "repoURL:\\s*(?<registryUrl>https?://[^\\s]+)\\s*\\n\\s*chart:\\s*(?<depName>[^\\s]+)\\s*\\n\\s*targetRevision:\\s*(?<currentValue>[^\\s]+)"
+      ],
+      "datasourceTemplate": "helm"
+    }
+  ],
+  "packageRules": [
+    {
+      "matchManagers": [
+        "docker-compose",
+        "terraform",
+        "kubernetes",
+        "pre-commit",
+        "regex"
+      ],
+      "groupName": "weekly infra dependencies"
+    },
+    {
+      "matchManagers": [
+        "docker-compose",
+        "terraform",
+        "kubernetes",
+        "pre-commit",
+        "regex"
+      ],
+      "automerge": true,
+      "platformAutomerge": true,
+      "automergeType": "pr",
+      "rebaseWhen": "behind-base-branch"
+    }
+  ]
+}
