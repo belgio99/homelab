@@ -13,27 +13,28 @@
     "terraform",
     "kubernetes",
     "pre-commit",
-    "regex"
+    "custom.regex"
   ],
   "docker-compose": {
-    "fileMatch": [
-      "(^|/)docker-compose\\.ya?ml$"
+    "managerFilePatterns": [
+      "/(^|/)docker-compose\\.ya?ml$/"
     ]
   },
   "terraform": {
-    "fileMatch": [
-      "(^|/)terraform/.+\\.tf$"
+    "managerFilePatterns": [
+      "/(^|/)terraform/.+\\.tf$/"
     ]
   },
   "kubernetes": {
-    "fileMatch": [
-      "^oracle-arm/.+\\.ya?ml$"
+    "managerFilePatterns": [
+      "/^oracle-arm/.+\\.ya?ml$/"
     ]
   },
-  "regexManagers": [
+  "customManagers": [
     {
-      "fileMatch": [
-        "^oracle-arm/argocd/.+\\.ya?ml$"
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^oracle-arm/argocd/.+\\.ya?ml$/"
       ],
       "matchStrings": [
         "repoURL:\\s*(?<registryUrl>https?://[^\\s]+)\\s*\\n\\s*chart:\\s*(?<depName>[^\\s]+)\\s*\\n\\s*targetRevision:\\s*(?<currentValue>[^\\s]+)"
@@ -48,7 +49,7 @@
         "terraform",
         "kubernetes",
         "pre-commit",
-        "regex"
+        "custom.regex"
       ],
       "groupName": "weekly infra dependencies"
     },
@@ -58,7 +59,7 @@
         "terraform",
         "kubernetes",
         "pre-commit",
-        "regex"
+        "custom.regex"
       ],
       "automerge": true,
       "platformAutomerge": true,
