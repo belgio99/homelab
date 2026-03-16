@@ -8,13 +8,6 @@
     "before 6am on monday"
   ],
   "prConcurrentLimit": 5,
-  "enabledManagers": [
-    "docker-compose",
-    "terraform",
-    "kubernetes",
-    "pre-commit",
-    "custom.regex"
-  ],
   "docker-compose": {
     "managerFilePatterns": [
       "/(^|/)docker-compose\\.ya?ml$/"
@@ -40,6 +33,28 @@
         "repoURL:\\s*(?<registryUrl>https?://[^\\s]+)\\s*\\n\\s*chart:\\s*(?<depName>[^\\s]+)\\s*\\n\\s*targetRevision:\\s*(?<currentValue>[^\\s]+)"
       ],
       "datasourceTemplate": "helm"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^oracle-arm/argocd/.+\\.ya?ml$/"
+      ],
+      "matchStrings": [
+        "GH_VERSION=(?<currentValue>\\d+\\.\\d+\\.\\d+)"
+      ],
+      "depNameTemplate": "cli/cli",
+      "datasourceTemplate": "github-releases",
+      "extractVersionTemplate": "^v(?<version>.*)$"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^oracle-arm/argocd/.+\\.ya?ml$/"
+      ],
+      "matchStrings": [
+        "image:\\s+(?<depName>[a-z][a-z0-9./\\-]*):(?<currentValue>[^\\s\"']+)"
+      ],
+      "datasourceTemplate": "docker"
     }
   ],
   "packageRules": [
@@ -48,6 +63,7 @@
         "docker-compose",
         "terraform",
         "kubernetes",
+        "github-actions",
         "pre-commit",
         "custom.regex"
       ],
@@ -58,6 +74,7 @@
         "docker-compose",
         "terraform",
         "kubernetes",
+        "github-actions",
         "pre-commit",
         "custom.regex"
       ],
