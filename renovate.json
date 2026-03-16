@@ -59,6 +59,7 @@
   ],
   "packageRules": [
     {
+      "matchPackageNames": ["*"],
       "groupName": "weekly infra dependencies",
       "automerge": true,
       "platformAutomerge": true,
