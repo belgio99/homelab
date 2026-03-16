@@ -59,25 +59,7 @@
   ],
   "packageRules": [
     {
-      "matchManagers": [
-        "docker-compose",
-        "terraform",
-        "kubernetes",
-        "github-actions",
-        "pre-commit",
-        "custom.regex"
-      ],
-      "groupName": "weekly infra dependencies"
-    },
-    {
-      "matchManagers": [
-        "docker-compose",
-        "terraform",
-        "kubernetes",
-        "github-actions",
-        "pre-commit",
-        "custom.regex"
-      ],
+      "groupName": "weekly infra dependencies",
       "automerge": true,
       "platformAutomerge": true,
       "automergeType": "pr",
