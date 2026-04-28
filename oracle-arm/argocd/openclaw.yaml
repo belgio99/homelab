@@ -26,14 +26,12 @@ spec:
                         set -e
                         BIN_DIR=/home/node/.openclaw/bin
                         mkdir -p "$BIN_DIR"
-                        if [ ! -x "$BIN_DIR/gh" ]; then
-                          GH_VERSION=2.92.0
-                          curl -fsSL "https://github.com/cli/cli/releases/download/v${GH_VERSION}/gh_${GH_VERSION}_linux_arm64.tar.gz" | tar xz -C /tmp
-                          cp "/tmp/gh_${GH_VERSION}_linux_arm64/bin/gh" "$BIN_DIR/gh"
-                        fi
-                        if [ ! -x "$BIN_DIR/kubectl" ]; then
-                          curl -fsSL "https://dl.k8s.io/release/$(curl -fsSL https://dl.k8s.io/release/stable.txt)/bin/linux/arm64/kubectl" -o "$BIN_DIR/kubectl"
-                        fi
+                        GH_VERSION=2.92.0
+                        curl -fsSL "https://github.com/cli/cli/releases/download/v${GH_VERSION}/gh_${GH_VERSION}_linux_arm64.tar.gz" | tar xz -C /tmp
+                        cp "/tmp/gh_${GH_VERSION}_linux_arm64/bin/gh" "$BIN_DIR/gh"
+                        rm -rf "/tmp/gh_${GH_VERSION}_linux_arm64"
+                        KUBECTL_VERSION="$(curl -fsSL https://dl.k8s.io/release/stable.txt)"
+                        curl -fsSL "https://dl.k8s.io/release/${KUBECTL_VERSION}/bin/linux/arm64/kubectl" -o "$BIN_DIR/kubectl"
                         chmod +x "$BIN_DIR/gh" "$BIN_DIR/kubectl"
                         echo "Tools installed:" && ls -la "$BIN_DIR"
                         exec /scripts/init-skills.sh
