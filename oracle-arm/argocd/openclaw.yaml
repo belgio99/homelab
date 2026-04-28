@@ -19,7 +19,9 @@ spec:
               main:
                 initContainers:
                   install-tools:
-                    image: alpine:3.23
+                    image:
+                      repository: alpine
+                      tag: "3.23"
                     command:
                       - sh
                       - -c
@@ -33,23 +35,22 @@ spec:
                         curl -sL "https://dl.k8s.io/release/$(curl -sL https://dl.k8s.io/release/stable.txt)/bin/linux/arm64/kubectl" -o /extra-tools/kubectl &&
                         chmod +x /extra-tools/gh /extra-tools/kubectl &&
                         echo "Tools installed:" && ls -la /extra-tools/
-                    volumeMounts:
-                      - name: extra-tools
-                        mountPath: /extra-tools
                 containers:
                   main:
                     env:
-                      - name: PATH
-                        value: "/extra-tools:/root/.bun/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+                      PATH: "/extra-tools:/root/.bun/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
                     envFrom:
                       - secretRef:
                           name: openclaw-secrets
-                    volumeMounts:
-                      - name: extra-tools
-                        mountPath: /extra-tools
             persistence:
               extra-tools:
                 type: emptyDir
+                advancedMounts:
+                  main:
+                    main:
+                      - path: /extra-tools
+                    install-tools:
+                      - path: /extra-tools
             configMaps:
               config:
                 data:
