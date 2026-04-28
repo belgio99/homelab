@@ -10,7 +10,7 @@ spec:
   sources:
     - repoURL: https://serhanekicii.github.io/openclaw-helm
       chart: openclaw
-      targetRevision: 1.5.12
+      targetRevision: 1.5.27
       helm:
         valuesObject:
           app-template:
@@ -26,7 +26,7 @@ spec:
                       - |
                         apk add --no-cache curl tar gzip &&
                         # Install gh CLI
-                        GH_VERSION=2.89.0
+                        GH_VERSION=2.92.0
                         curl -sL "https://github.com/cli/cli/releases/download/v${GH_VERSION}/gh_${GH_VERSION}_linux_arm64.tar.gz" | tar xz -C /tmp &&
                         cp /tmp/gh_${GH_VERSION}_linux_arm64/bin/gh /extra-tools/ &&
                         # Install kubectl
