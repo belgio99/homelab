@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98
-      - uses: renovatebot/github-action@65fadb148a0cb437ed338150090bcc6918283314
+      - uses: renovatebot/github-action@f66d8679fcfcfa051abde6e7a623007173bf5164 # v46.1.12
         with:
           token: ${{ secrets.RENOVATE_TOKEN }}
         env:
