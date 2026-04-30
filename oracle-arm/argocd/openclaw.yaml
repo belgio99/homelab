@@ -77,63 +77,6 @@ spec:
                       "meta": {
                         "lastTouchedVersion": "0.0.0",
                         "lastTouchedAt": "1970-01-01T00:00:00.000Z"
-                      },
-                      "gateway": {
-                        "port": 18789,
-                        "mode": "local",
-                        "trustedProxies": ["10.0.0.0/8"],
-                        "controlUi": {
-                          "dangerouslyAllowHostHeaderOriginFallback": true,
-                          "dangerouslyDisableDeviceAuth": true,
-                          "allowInsecureAuth": true
-                        }
-                      },
-                      "browser": {
-                        "enabled": true,
-                        "defaultProfile": "default",
-                        "profiles": {
-                          "default": {
-                            "cdpUrl": "http://localhost:9222",
-                            "color": "#4285F4"
-                          }
-                        }
-                      },
-                      "agents": {
-                        "defaults": {
-                          "workspace": "/home/node/.openclaw/workspace",
-                          "model": "google/gemini-3.1-pro-preview",
-                          "userTimezone": "UTC",
-                          "timeoutSeconds": 600,
-                          "maxConcurrent": 2
-                        }
-                      },
-                      "session": {
-                        "scope": "per-sender",
-                        "store": "/home/node/.openclaw/sessions",
-                        "reset": {
-                          "mode": "idle",
-                          "idleMinutes": 60
-                        }
-                      },
-                      "logging": {
-                        "level": "info",
-                        "consoleLevel": "info",
-                        "consoleStyle": "compact",
-                        "redactSensitive": "tools"
-                      },
-                      "tools": {
-                        "profile": "full",
-                        "web": {
-                          "search": { "enabled": true },
-                          "fetch": { "enabled": true }
-                        }
-                      },
-                      "channels": {
-                        "telegram": {
-                          "enabled": true,
-                          "botToken": "${TELEGRAM_BOT_TOKEN}",
-                          "dmPolicy": "pairing"
-                        }
                       }
                     }
             ingress:
