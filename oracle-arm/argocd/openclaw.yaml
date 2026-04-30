@@ -63,7 +63,9 @@ spec:
                         "mode": "local",
                         "trustedProxies": ["10.0.0.0/8"],
                         "controlUi": {
-                          "dangerouslyAllowHostHeaderOriginFallback": true
+                          "dangerouslyAllowHostHeaderOriginFallback": true,
+                          "dangerouslyDisableDeviceAuth": true,
+                          "allowInsecureAuth": true
                         }
                       },
                       "browser": {
