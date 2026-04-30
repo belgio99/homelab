@@ -14,7 +14,7 @@ spec:
       helm:
         valuesObject:
           app-template:
-            configMode: overwrite
+            configMode: merge
             controllers:
               main:
                 serviceAccount:
