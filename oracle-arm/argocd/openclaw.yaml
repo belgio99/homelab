@@ -92,10 +92,22 @@ spec:
                       "agents": {
                         "defaults": {
                           "workspace": "/home/node/.openclaw/workspace",
-                          "model": "google/gemini-3.1-pro-preview",
-                          "userTimezone": "UTC",
+                          "model": {
+                            "primary": "google/gemini-3.1-pro-preview",
+                            "fallbacks": [
+                              "openai/gpt-5.5"
+                            ]
+                          },
+                          "userTimezone": "Europe/Rome",
                           "timeoutSeconds": 600,
-                          "maxConcurrent": 2
+                          "maxConcurrent": 2,
+                          "models": {
+                            "google/gemini-3.1-pro-preview": {},
+                            "google/gemini-3.1-flash-lite-preview": {},
+                            "openai/gpt-5.5": { "alias": "gpt", "params": { "serviceTier": "flex" } },
+                            "openai/gpt-5.4-mini": { "alias": "gpt-mini", "params": { "serviceTier": "flex" } },
+                            "anthropic/claude-opus-4-7": { "alias": "opus" }
+                          }
                         }
                       },
                       "channels": {
