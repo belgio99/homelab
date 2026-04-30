@@ -17,8 +17,8 @@ spec:
             configMode: overwrite
             controllers:
               main:
-                pod:
-                  serviceAccountName: openclaw-ai-sa
+                serviceAccount:
+                  name: openclaw-ai-sa
                 initContainers:
                   install-tools:
                     image:
