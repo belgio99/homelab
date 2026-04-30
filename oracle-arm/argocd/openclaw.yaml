@@ -19,6 +19,10 @@ spec:
               main:
                 serviceAccount:
                   name: openclaw-ai-sa
+                pod:
+                  dnsConfig:
+                    options:
+                      - name: no-aaaa
                 initContainers:
                   install-tools:
                     image:
