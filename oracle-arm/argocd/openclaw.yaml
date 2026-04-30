@@ -49,6 +49,17 @@ spec:
                     envFrom:
                       - secretRef:
                           name: openclaw-secrets
+                    probes:
+                      startup:
+                        enabled: true
+                        custom: true
+                        spec:
+                          failureThreshold: 60
+                          initialDelaySeconds: 10
+                          periodSeconds: 5
+                          timeoutSeconds: 5
+                          tcpSocket:
+                            port: 18789
             persistence:
               extra-tools:
                 type: emptyDir
