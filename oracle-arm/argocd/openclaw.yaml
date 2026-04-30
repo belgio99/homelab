@@ -93,7 +93,7 @@ spec:
                             ]
                           },
                           "userTimezone": "UTC",
-                          "timeoutSeconds": 600,
+                          "timeoutSeconds": 90,
                           "maxConcurrent": 2,
                           "models": {
                             "google/gemini-3.1-pro-preview": {},
@@ -130,6 +130,13 @@ spec:
                           "enabled": true,
                           "botToken": "${TELEGRAM_BOT_TOKEN}",
                           "dmPolicy": "pairing"
+                        }
+                      },
+                      "plugins": {
+                        "entries": {
+                          "bonjour":    { "enabled": false },
+                          "openrouter": { "enabled": false },
+                          "litellm":    { "enabled": false }
                         }
                       }
                     }
