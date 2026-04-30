@@ -10,7 +10,7 @@ spec:
   sources:
     - repoURL: https://serhanekicii.github.io/openclaw-helm
       chart: openclaw
-      targetRevision: 1.5.27
+      targetRevision: 1.5.28
       helm:
         valuesObject:
           app-template:
@@ -77,6 +77,33 @@ spec:
                       "meta": {
                         "lastTouchedVersion": "0.0.0",
                         "lastTouchedAt": "1970-01-01T00:00:00.000Z"
+                      },
+                      "gateway": {
+                        "port": 18789,
+                        "mode": "local",
+                        "bind": "lan",
+                        "trustedProxies": ["10.0.0.0/8"],
+                        "controlUi": {
+                          "dangerouslyAllowHostHeaderOriginFallback": true,
+                          "dangerouslyDisableDeviceAuth": true,
+                          "allowInsecureAuth": true
+                        }
+                      },
+                      "agents": {
+                        "defaults": {
+                          "workspace": "/home/node/.openclaw/workspace",
+                          "model": "google/gemini-3.1-pro-preview",
+                          "userTimezone": "UTC",
+                          "timeoutSeconds": 600,
+                          "maxConcurrent": 2
+                        }
+                      },
+                      "channels": {
+                        "telegram": {
+                          "enabled": true,
+                          "botToken": "${TELEGRAM_BOT_TOKEN}",
+                          "dmPolicy": "pairing"
+                        }
                       }
                     }
             ingress:
