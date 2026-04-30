@@ -92,7 +92,7 @@ spec:
                               "openai/gpt-5.5"
                             ]
                           },
-                          "userTimezone": "UTC",
+                          "userTimezone": "Europe/Rome",
                           "timeoutSeconds": 90,
                           "maxConcurrent": 2,
                           "models": {
