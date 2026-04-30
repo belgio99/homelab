@@ -74,6 +74,7 @@ spec:
                 data:
                   openclaw.json: |
                     {
+                      "meta": {},
                       "gateway": {
                         "port": 18789,
                         "mode": "local",
