@@ -117,6 +117,19 @@ spec:
                           "botToken": "${TELEGRAM_BOT_TOKEN}",
                           "dmPolicy": "pairing"
                         }
+                      },
+                      "plugins": {
+                        "entries": {
+                          "codex": {
+                            "enabled": true,
+                            "config": {
+                              "appServer": {
+                                "sandbox": "danger-full-access",
+                                "approvalPolicy": "never"
+                              }
+                            }
+                          }
+                        }
                       }
                     }
             ingress:
