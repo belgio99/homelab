@@ -100,20 +100,20 @@ spec:
                         "defaults": {
                           "workspace": "/home/node/.openclaw/workspace",
                           "model": {
-                            "primary": "openai/gpt-5.5"
-                          },
-                          "agentRuntime": {
-                            "id": "codex",
-                            "fallback": "none"
+                            "primary": "google/gemini-3.1-pro-preview",
+                            "fallbacks": [
+                              "openai/gpt-5.5"
+                            ]
                           },
                           "userTimezone": "Europe/Rome",
                           "timeoutSeconds": 600,
                           "maxConcurrent": 2,
                           "models": {
-                            "openai/gpt-5.5": { "alias": "gpt" },
-                            "openai/gpt-5.4-mini": { "alias": "gpt-mini" },
                             "google/gemini-3.1-pro-preview": { "alias": "gemini" },
                             "google/gemini-3.1-flash-lite-preview": { "alias": "gemini-flash-lite" },
+                            "openai/gpt-5.5": { "alias": "gpt", "params": { "serviceTier": "flex" } },
+                            "openai/gpt-5.4-mini": { "alias": "gpt-mini", "params": { "serviceTier": "flex" } },
+                            "openai-codex/gpt-5.5": { "alias": "codex" },
                             "anthropic/claude-opus-4-7": { "alias": "opus" }
                           }
                         }
@@ -123,19 +123,6 @@ spec:
                           "enabled": true,
                           "botToken": "${TELEGRAM_BOT_TOKEN}",
                           "dmPolicy": "pairing"
-                        }
-                      },
-                      "plugins": {
-                        "entries": {
-                          "codex": {
-                            "enabled": true,
-                            "config": {
-                              "appServer": {
-                                "sandbox": "danger-full-access",
-                                "approvalPolicy": "never"
-                              }
-                            }
-                          }
                         }
                       }
                     }
