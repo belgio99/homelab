@@ -100,7 +100,7 @@ spec:
                         "defaults": {
                           "workspace": "/home/node/.openclaw/workspace",
                           "model": {
-                            "primary": "openai/gpt-5.5",
+                            "primary": "openai-codex/gpt-5.5",
                             "fallbacks": [
                               "google/gemini-3.1-pro-preview"
                             ]
@@ -109,6 +109,7 @@ spec:
                           "timeoutSeconds": 600,
                           "maxConcurrent": 2,
                           "models": {
+                            "openai-codex/gpt-5.5": { "alias": "codex" },
                             "openai/gpt-5.5": { "alias": "gpt", "params": { "serviceTier": "flex" } },
                             "openai/gpt-5.4-mini": { "alias": "gpt-mini", "params": { "serviceTier": "flex" } },
                             "google/gemini-3.1-pro-preview": { "alias": "gemini" },
