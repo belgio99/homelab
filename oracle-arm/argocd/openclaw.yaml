@@ -49,6 +49,13 @@ spec:
                     envFrom:
                       - secretRef:
                           name: openclaw-secrets
+                    resources:
+                      requests:
+                        cpu: "500m"
+                        memory: "1Gi"
+                      limits:
+                        cpu: "2"
+                        memory: "6Gi"
                     probes:
                       startup:
                         enabled: true
