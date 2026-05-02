@@ -106,7 +106,9 @@ spec:
                             "google/gemini-3.1-flash-lite-preview": {},
                             "openai/gpt-5.5": { "alias": "gpt", "params": { "serviceTier": "flex" } },
                             "openai/gpt-5.4-mini": { "alias": "gpt-mini", "params": { "serviceTier": "flex" } },
-                            "anthropic/claude-opus-4-7": { "alias": "opus" }
+                            "anthropic/claude-opus-4-7": { "alias": "opus" },
+                            "codex/gpt-5.5": { "alias": "codex" },
+                            "codex/gpt-5.4-mini": { "alias": "codex-mini" }
                           }
                         }
                       },
