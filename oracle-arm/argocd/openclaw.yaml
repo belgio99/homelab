@@ -126,6 +126,52 @@ spec:
                           "botToken": "${TELEGRAM_BOT_TOKEN}",
                           "dmPolicy": "pairing"
                         }
+                      },
+                      "plugins": {
+                        "entries": {
+                          "amazon-bedrock":         { "enabled": false },
+                          "amazon-bedrock-mantle":  { "enabled": false },
+                          "anthropic-vertex":       { "enabled": false },
+                          "arcee":                  { "enabled": false },
+                          "byteplus":               { "enabled": false },
+                          "cerebras":               { "enabled": false },
+                          "chutes":                 { "enabled": false },
+                          "cloudflare-ai-gateway":  { "enabled": false },
+                          "comfy":                  { "enabled": false },
+                          "copilot-proxy":          { "enabled": false },
+                          "deepinfra":              { "enabled": false },
+                          "deepseek":               { "enabled": false },
+                          "fal":                    { "enabled": false },
+                          "fireworks":              { "enabled": false },
+                          "github-copilot":         { "enabled": false },
+                          "groq":                   { "enabled": false },
+                          "huggingface":            { "enabled": false },
+                          "kilocode":               { "enabled": false },
+                          "kimi":                   { "enabled": false },
+                          "lmstudio":               { "enabled": false },
+                          "microsoft-foundry":      { "enabled": false },
+                          "minimax":                { "enabled": false },
+                          "mistral":                { "enabled": false },
+                          "moonshot":               { "enabled": false },
+                          "nvidia":                 { "enabled": false },
+                          "ollama":                 { "enabled": false },
+                          "opencode":               { "enabled": false },
+                          "opencode-go":            { "enabled": false },
+                          "qianfan":                { "enabled": false },
+                          "qwen":                   { "enabled": false },
+                          "sglang":                 { "enabled": false },
+                          "stepfun":                { "enabled": false },
+                          "synthetic":              { "enabled": false },
+                          "tencent":                { "enabled": false },
+                          "together":               { "enabled": false },
+                          "venice":                 { "enabled": false },
+                          "vllm":                   { "enabled": false },
+                          "volcengine":             { "enabled": false },
+                          "vydra":                  { "enabled": false },
+                          "xai":                    { "enabled": false },
+                          "xiaomi":                 { "enabled": false },
+                          "zai":                    { "enabled": false }
+                        }
                       }
                     }
             ingress:
