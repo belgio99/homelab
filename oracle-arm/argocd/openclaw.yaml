@@ -100,20 +100,19 @@ spec:
                         "defaults": {
                           "workspace": "/home/node/.openclaw/workspace",
                           "model": {
-                            "primary": "google/gemini-3.1-pro-preview",
+                            "primary": "openai/gpt-5.5",
                             "fallbacks": [
-                              "openai/gpt-5.5"
+                              "google/gemini-3.1-pro-preview"
                             ]
                           },
                           "userTimezone": "Europe/Rome",
                           "timeoutSeconds": 600,
                           "maxConcurrent": 2,
                           "models": {
-                            "google/gemini-3.1-pro-preview": { "alias": "gemini" },
-                            "google/gemini-3.1-flash-lite-preview": { "alias": "gemini-flash-lite" },
                             "openai/gpt-5.5": { "alias": "gpt", "params": { "serviceTier": "flex" } },
                             "openai/gpt-5.4-mini": { "alias": "gpt-mini", "params": { "serviceTier": "flex" } },
-                            "openai-codex/gpt-5.5": { "alias": "codex" },
+                            "google/gemini-3.1-pro-preview": { "alias": "gemini" },
+                            "google/gemini-3.1-flash-lite-preview": { "alias": "gemini-flash-lite" },
                             "anthropic/claude-opus-4-7": { "alias": "opus" }
                           }
                         }
