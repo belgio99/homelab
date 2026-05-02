@@ -93,20 +93,20 @@ spec:
                         "defaults": {
                           "workspace": "/home/node/.openclaw/workspace",
                           "model": {
-                            "primary": "google/gemini-3.1-pro-preview",
-                            "fallbacks": [
-                              "openai/gpt-5.5"
-                            ]
+                            "primary": "openai/gpt-5.5"
+                          },
+                          "agentRuntime": {
+                            "id": "codex",
+                            "fallback": "none"
                           },
                           "userTimezone": "Europe/Rome",
                           "timeoutSeconds": 600,
                           "maxConcurrent": 2,
                           "models": {
-                            "google/gemini-3.1-pro-preview": {},
-                            "google/gemini-3.1-flash-lite-preview": {},
-                            "openai/gpt-5.5": { "alias": "gpt", "params": { "serviceTier": "flex" } },
-                            "openai/gpt-5.4-mini": { "alias": "gpt-mini", "params": { "serviceTier": "flex" } },
-                            "openai-codex/gpt-5.5": { "alias": "codex" },
+                            "openai/gpt-5.5": { "alias": "gpt" },
+                            "openai/gpt-5.4-mini": { "alias": "gpt-mini" },
+                            "google/gemini-3.1-pro-preview": { "alias": "gemini" },
+                            "google/gemini-3.1-flash-lite-preview": { "alias": "gemini-flash-lite" },
                             "anthropic/claude-opus-4-7": { "alias": "opus" }
                           }
                         }
